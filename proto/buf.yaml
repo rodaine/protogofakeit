@@ -1,0 +1,11 @@
+version: v1
+name: buf.build/rodaine/protogofakeit
+breaking:
+  use:
+    - FILE
+lint:
+  use:
+    - DEFAULT
+  except:
+    # we use a shorter name for the package to make the annotation less gnarly
+    - PACKAGE_VERSION_SUFFIX

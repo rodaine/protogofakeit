@@ -1,0 +1,41 @@
+syntax="proto3";
+
+package gofakeit;
+option go_package = "github.com/rodaine/protogofakeit/gen/gofakeit";
+import "google/protobuf/descriptor.proto";
+
+extend google.protobuf.FieldOptions {
+  Generator generate = 112233;
+}
+
+message Generator {
+  oneof apply {
+    bool skip = 1;
+    string tag = 2;
+    string template = 3;
+    Repeated repeated = 4;
+    Map map = 5;
+  }
+}
+
+message Repeated {
+  oneof size {
+    uint32 len = 5;
+    Range range = 6;
+  }
+  Generator element = 1;
+}
+
+message Map {
+  oneof size {
+    uint32 len = 1;
+    Range range = 2;
+  }
+  Generator key = 3;
+  Generator value = 4;
+}
+
+message Range {
+  uint32 min = 1;
+  uint32 max = 2;
+}

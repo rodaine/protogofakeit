@@ -1,0 +1,18 @@
+syntax = "proto3";
+package gofakeit.test;
+option go_package = "github.com/rodaine/protogofakeit/gen/gofakeit/test";
+import "gofakeit/gofakeit.proto";
+
+message SelfRecursive {
+  string foo = 1 [(gofakeit.generate).tag = "{phone}"];
+  SelfRecursive recurse = 2;
+}
+
+message PairRecursive {
+  message A { B b = 1; }
+  message B { A a = 2; }
+}
+
+message MessageSkipped {
+  MessageSkipped skipped = 1 [(gofakeit.generate).skip = true];
+}

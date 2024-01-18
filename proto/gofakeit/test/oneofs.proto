@@ -1,0 +1,18 @@
+syntax = "proto3";
+package gofakeit.test;
+option go_package = "github.com/rodaine/protogofakeit/gen/gofakeit/test";
+import "gofakeit/gofakeit.proto";
+
+enum OneOfEnum {
+  ONE_OF_ENUM_UNSPECIFIED = 0;
+  ONE_OF_ENUM_ONE = 1;
+  ONE_OF_ENUM_TWO = 2;
+}
+
+message OneOf{
+  oneof fields {
+    string scalar = 1;
+    OneOfEnum enum = 2;
+    OneOf message = 3;
+  }
+}

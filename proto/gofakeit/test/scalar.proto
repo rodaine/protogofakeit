@@ -1,0 +1,106 @@
+syntax = "proto3";
+package gofakeit.test;
+option go_package = "github.com/rodaine/protogofakeit/gen/gofakeit/test";
+import "gofakeit/gofakeit.proto";
+
+
+enum Enum {
+  ENUM_UNSPECIFIED = 0;
+  ENUM_ALPHA = 1;
+  ENUM_BETA = 2;
+  ENUM_GAMMA = 3;
+}
+
+message ScalarDefaults {
+  bool bool = 1;
+  Enum enum = 2;
+  int32 int32 = 3;
+  sint32 sint32 = 4;
+  sfixed32 sfixed32 = 5;
+  uint32 uint32 = 6;
+  fixed32 fixed32 = 7;
+  int64 int64 = 8;
+  sint64 sint64 = 9;
+  sfixed64 sfixed64 = 10;
+  uint64 uint64 = 11;
+  fixed64 fixed64 = 12;
+  float float = 13;
+  double double = 14;
+  string string = 15;
+  bytes bytes = 16;
+}
+
+message ScalarStaticTags {
+  bool bool = 1 [(gofakeit.generate).tag = "true"];
+  Enum enum = 2 [(gofakeit.generate).tag = "2"];
+  int32 int32 = 3 [(gofakeit.generate).tag = "123"];
+  sint32 sint32 = 4 [(gofakeit.generate).tag = "-456"];
+  sfixed32 sfixed32 = 5 [(gofakeit.generate).tag = "789"];
+  uint32 uint32 = 6 [(gofakeit.generate).tag = "1011"];
+  fixed32 fixed32 = 7 [(gofakeit.generate).tag = "1213"];
+  int64 int64 = 8 [(gofakeit.generate).tag = "1415"];
+  sint64 sint64 = 9 [(gofakeit.generate).tag = "-1617"];
+  sfixed64 sfixed64 = 10 [(gofakeit.generate).tag = "1819"];
+  uint64 uint64 = 11 [(gofakeit.generate).tag = "2021"];
+  fixed64 fixed64 = 12 [(gofakeit.generate).tag = "2223"];
+  float float = 13 [(gofakeit.generate).tag = "1.23"];
+  double double = 14 [(gofakeit.generate).tag = "-4.56"];
+  string string = 15 [(gofakeit.generate).tag = "foobar"];
+  bytes bytes = 16 [(gofakeit.generate).tag = "fizzbuzz"];
+}
+
+message ScalarTags {
+  bool bool = 1 [(gofakeit.generate).tag = "{bool}"];
+  Enum enum = 2 [(gofakeit.generate).tag = "{number:0,3}"];
+  int32 int32 = 3 [(gofakeit.generate).tag = "{number:-10,10}"];
+  sint32 sint32 = 4 [(gofakeit.generate).tag = "{number:-10,10}"];
+  sfixed32 sfixed32 = 5 [(gofakeit.generate).tag = "{number:-10,10}"];
+  uint32 uint32 = 6 [(gofakeit.generate).tag = "{number:0,10}"];
+  fixed32 fixed32 = 7 [(gofakeit.generate).tag = "{number:0,10}"];
+  int64 int64 = 8 [(gofakeit.generate).tag = "{number:-10,10}"];
+  sint64 sint64 = 9 [(gofakeit.generate).tag = "{number:-10,10}"];
+  sfixed64 sfixed64 = 10 [(gofakeit.generate).tag = "{number:-10,10}"];
+  uint64 uint64 = 11 [(gofakeit.generate).tag = "{number:0,10}"];
+  fixed64 fixed64 = 12 [(gofakeit.generate).tag = "{number:0,10}"];
+  float float = 13 [(gofakeit.generate).tag = "{float32range:-10,10}"];
+  double double = 14 [(gofakeit.generate).tag = "{float64range:-10,10}"];
+  string string = 15 [(gofakeit.generate).tag = "{sentence:3}"];
+  bytes bytes = 16 [(gofakeit.generate).tag = "{hackerphrase}"];
+}
+message ScalarStaticTemplates {
+  bool bool = 1 [(gofakeit.generate).template = "true"];
+  Enum enum = 2 [(gofakeit.generate).template = "2"];
+  int32 int32 = 3 [(gofakeit.generate).template = "123"];
+  sint32 sint32 = 4 [(gofakeit.generate).template = "-456"];
+  sfixed32 sfixed32 = 5 [(gofakeit.generate).template = "789"];
+  uint32 uint32 = 6 [(gofakeit.generate).template = "1011"];
+  fixed32 fixed32 = 7 [(gofakeit.generate).template = "1213"];
+  int64 int64 = 8 [(gofakeit.generate).template = "1415"];
+  sint64 sint64 = 9 [(gofakeit.generate).template = "-1617"];
+  sfixed64 sfixed64 = 10 [(gofakeit.generate).template = "1819"];
+  uint64 uint64 = 11 [(gofakeit.generate).template = "2021"];
+  fixed64 fixed64 = 12 [(gofakeit.generate).template = "2223"];
+  float float = 13 [(gofakeit.generate).template = "1.23"];
+  double double = 14 [(gofakeit.generate).template = "-4.56"];
+  string string = 15 [(gofakeit.generate).template = "foobar"];
+  bytes bytes = 16 [(gofakeit.generate).template = "fizzbuzz"];
+}
+
+message ScalarSkip {
+  bool bool = 1 [(gofakeit.generate).skip = true];
+  Enum enum = 2 [(gofakeit.generate).skip = true];
+  int32 int32 = 3 [(gofakeit.generate).skip = true];
+  sint32 sint32 = 4 [(gofakeit.generate).skip = true];
+  sfixed32 sfixed32 = 5 [(gofakeit.generate).skip = true];
+  uint32 uint32 = 6 [(gofakeit.generate).skip = true];
+  fixed32 fixed32 = 7 [(gofakeit.generate).skip = true];
+  int64 int64 = 8 [(gofakeit.generate).skip = true];
+  sint64 sint64 = 9 [(gofakeit.generate).skip = true];
+  sfixed64 sfixed64 = 10 [(gofakeit.generate).skip = true];
+  uint64 uint64 = 11 [(gofakeit.generate).skip = true];
+  fixed64 fixed64 = 12 [(gofakeit.generate).skip = true];
+  float float = 13 [(gofakeit.generate).skip = true];
+  double double = 14 [(gofakeit.generate).skip = true];
+  string string = 15 [(gofakeit.generate).skip = true];
+  bytes bytes = 16 [(gofakeit.generate).skip = true];
+}

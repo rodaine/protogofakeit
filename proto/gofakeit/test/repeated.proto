@@ -1,0 +1,38 @@
+syntax = "proto3";
+package gofakeit.test;
+option go_package = "github.com/rodaine/protogofakeit/gen/gofakeit/test";
+import "gofakeit/gofakeit.proto";
+
+enum RepeatedEnum {
+  REPEATED_ENUM_UNSPECIFIED = 0;
+  REPEATED_ENUM_ONE = 1;
+  REPEATED_ENUM_TWO = 2;
+}
+
+message RepeatedMsg {
+  string foo = 1;
+}
+
+message RepeatedDefaults {
+  repeated string scalars = 1;
+  repeated RepeatedEnum enums = 2;
+  repeated RepeatedMsg messages = 3;
+  repeated RepeatedDefaults recursive = 4;
+}
+
+message RepeatedTags {
+  repeated string foo = 1 [(gofakeit.generate).repeated.element.tag = "bar"];
+}
+
+message RepeatedLength {
+  repeated string scalars = 1 [(gofakeit.generate).repeated.len = 3];
+}
+
+message RepeatedRange {
+  repeated string scalars = 1 [(gofakeit.generate).repeated.range = {min: 1, max: 2}];
+}
+
+message RepeatedSkip {
+  repeated string scalars = 1 [(gofakeit.generate).repeated.element.skip = true];
+  repeated string skipped = 2 [(gofakeit.generate).skip = true];
+}
