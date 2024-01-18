@@ -46,7 +46,7 @@ lint: $(codegen) $(GOLANGCI_LINT)
 
 .PHONY: generate
 generate: $(BUF)
-	buf generate proto
+	$(BUF) generate proto
 
 .PHONY: generate-check
 generate-check:
