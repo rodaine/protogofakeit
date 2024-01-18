@@ -1,4 +1,4 @@
-# protogofakeit
+# protogofakeit [![Go Reference](https://pkg.go.dev/badge/github.com/rodaine/protogofakeit.svg)](https://pkg.go.dev/github.com/rodaine/protogofakeit) [![CI](https://github.com/rodaine/protogofakeit/actions/workflows/ci.yaml/badge.svg)](https://github.com/rodaine/protogofakeit/actions/workflows/ci.yaml)
 
 `protogofakeit` provides a utility for producing fake data in Protocol Buffer 
 messages via [`gofakeit`][gofakeit].
