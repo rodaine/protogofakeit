@@ -6,7 +6,7 @@ toolchain go1.21.5
 
 require (
 	github.com/brianvoe/gofakeit/v6 v6.28.0
-	github.com/stretchr/testify v1.8.4
+	github.com/stretchr/testify v1.9.0
 	google.golang.org/protobuf v1.33.0
 )
 
