@@ -374,6 +374,14 @@ func TestProtoFaker(t *testing.T) {
 		err = initProtoFaker(t, withSeed(3)).FakeProto(msg)
 		require.NoError(t, err)
 		assert.Nil(t, msg.GetFields())
+
+		t.Run("issue_5", func(t *testing.T) {
+			t.Parallel()
+			msg := &test.OneOfMessages{}
+			err = initProtoFaker(t, withSeed(5)).FakeProto(msg)
+			require.NoError(t, err)
+			assert.Nil(t, msg.GetKind())
+		})
 	})
 
 	t.Run("wkt", func(t *testing.T) {

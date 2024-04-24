@@ -40,6 +40,10 @@ check: test lint
 test: $(codegen)
 	$(GO) test $(GO_TEST_FLAGS) ./...
 
+.PHONY: format
+format: $(BUF)
+	$(BUF) format -w
+
 .PHONY: lint
 lint: $(codegen) $(GOLANGCI_LINT)
 	$(GOLANGCI_LINT) run

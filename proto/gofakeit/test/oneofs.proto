@@ -1,7 +1,9 @@
 syntax = "proto3";
 package gofakeit.test;
-option go_package = "github.com/rodaine/protogofakeit/gen/gofakeit/test";
+
 import "gofakeit/gofakeit.proto";
+
+option go_package = "github.com/rodaine/protogofakeit/gen/gofakeit/test";
 
 enum OneOfEnum {
   ONE_OF_ENUM_UNSPECIFIED = 0;
@@ -9,10 +11,18 @@ enum OneOfEnum {
   ONE_OF_ENUM_TWO = 2;
 }
 
-message OneOf{
+message OneOf {
   oneof fields {
     string scalar = 1;
     OneOfEnum enum = 2;
     OneOf message = 3;
+  }
+}
+
+// see https://github.com/rodaine/protogofakeit/issues/5
+message OneOfMessages {
+  oneof kind {
+    OneOfMessages foo = 1;
+    OneOfMessages bar = 2;
   }
 }
