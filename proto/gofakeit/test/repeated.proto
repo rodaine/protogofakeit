@@ -1,7 +1,9 @@
 syntax = "proto3";
 package gofakeit.test;
-option go_package = "github.com/rodaine/protogofakeit/gen/gofakeit/test";
+
 import "gofakeit/gofakeit.proto";
+
+option go_package = "github.com/rodaine/protogofakeit/gen/gofakeit/test";
 
 enum RepeatedEnum {
   REPEATED_ENUM_UNSPECIFIED = 0;
@@ -29,7 +31,10 @@ message RepeatedLength {
 }
 
 message RepeatedRange {
-  repeated string scalars = 1 [(gofakeit.generate).repeated.range = {min: 1, max: 2}];
+  repeated string scalars = 1 [(gofakeit.generate).repeated.range = {
+    min: 1,
+    max: 2
+  }];
 }
 
 message RepeatedSkip {

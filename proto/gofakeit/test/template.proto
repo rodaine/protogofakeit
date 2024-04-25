@@ -1,7 +1,9 @@
 syntax = "proto3";
 package gofakeit.test;
-option go_package = "github.com/rodaine/protogofakeit/gen/gofakeit/test";
+
 import "gofakeit/gofakeit.proto";
+
+option go_package = "github.com/rodaine/protogofakeit/gen/gofakeit/test";
 
 message CustomTemplate {
   string value = 1 [(gofakeit.generate).template = "{{ custom_func }}"];

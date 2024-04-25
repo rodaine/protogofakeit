@@ -1,7 +1,9 @@
 syntax = "proto3";
 package gofakeit.test;
-option go_package = "github.com/rodaine/protogofakeit/gen/gofakeit/test";
+
 import "gofakeit/gofakeit.proto";
+
+option go_package = "github.com/rodaine/protogofakeit/gen/gofakeit/test";
 
 enum MapEnum {
   MAP_ENUM_UNSPECIFIED = 0;
@@ -13,7 +15,7 @@ message MapMsg {
   string foo = 1;
 }
 
-message MapDefaults{
+message MapDefaults {
   map<string, bool> scalars = 1;
   map<int32, MapEnum> enums = 2;
   map<string, MapMsg> messages = 3;
@@ -28,15 +30,14 @@ message MapTags {
 }
 
 message MapLength {
-  map<string, string> values = 1 [
-    (gofakeit.generate).map.len = 3
-  ];
+  map<string, string> values = 1 [(gofakeit.generate).map.len = 3];
 }
 
 message MapRange {
-  map<string, string> values = 1 [
-    (gofakeit.generate).map.range = { min: 1, max: 2 }
-  ];
+  map<string, string> values = 1 [(gofakeit.generate).map.range = {
+    min: 1,
+    max: 2
+  }];
 }
 
 message MapSkip {
@@ -44,7 +45,5 @@ message MapSkip {
     (gofakeit.generate).map.key.skip = true,
     (gofakeit.generate).map.value.skip = true
   ];
-  map<string, string> skipped = 2 [
-    (gofakeit.generate).skip = true
-  ];
+  map<string, string> skipped = 2 [(gofakeit.generate).skip = true];
 }

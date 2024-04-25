@@ -27,6 +27,7 @@ jobs:
       - name: Generate
         run: |
           make clean
+          make format
           make generate
           make generate-check
       - name: Test

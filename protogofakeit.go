@@ -150,12 +150,13 @@ func (pf *protoFaker) fakeOneofs(
 ) error {
 	oneofs := desc.Oneofs()
 	for i, n := 0, oneofs.Len(); i < n; i++ {
-		fields := oneofs.Get(i).Fields()
+		oneof := oneofs.Get(i)
+		fields := oneof.Fields()
 		idx := pf.faker.Rand.Intn(fields.Len()+1) - 1
 		if idx == -1 {
-			field := fields.Get(0)
-			msg.Set(field, field.Default())
-			msg.Clear(field)
+			if field := msg.WhichOneof(oneof); field != nil {
+				msg.Clear(field)
+			}
 			continue
 		}
 		if err := pf.fakeField(depth, msg, fields.Get(idx)); err != nil {

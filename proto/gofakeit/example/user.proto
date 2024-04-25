@@ -1,7 +1,9 @@
-syntax="proto3";
+syntax = "proto3";
 package gofakeit.example;
-option go_package = "github.com/rodaine/protogofakeit/gen/gofakeit/example";
+
 import "gofakeit/gofakeit.proto";
+
+option go_package = "github.com/rodaine/protogofakeit/gen/gofakeit/example";
 
 message User {
   fixed64 user_id = 1;
@@ -10,11 +12,17 @@ message User {
   string email = 4 [(gofakeit.generate).tag = "{email}"];
   Location location = 5;
   repeated string hobbies = 6 [
-    (gofakeit.generate).repeated.range = { min: 1, max: 3},
+    (gofakeit.generate).repeated.range = {
+      min: 1,
+      max: 3
+    },
     (gofakeit.generate).repeated.element.tag = "{hobby}"
   ];
   map<string, PetType> pets = 7 [
-    (gofakeit.generate).map.range = { min: 1, max: 3},
+    (gofakeit.generate).map.range = {
+      min: 1,
+      max: 3
+    },
     (gofakeit.generate).map.key.tag = "{petname}"
   ];
 }
