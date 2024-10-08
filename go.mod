@@ -1,13 +1,11 @@
 module github.com/rodaine/protogofakeit
 
-go 1.21
-
-toolchain go1.21.5
+go 1.22
 
 require (
 	github.com/brianvoe/gofakeit/v6 v6.28.0
 	github.com/stretchr/testify v1.9.0
-	google.golang.org/protobuf v1.34.2
+	google.golang.org/protobuf v1.35.1
 )
 
 require (

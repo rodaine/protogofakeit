@@ -117,7 +117,7 @@ func TestProtoFaker(t *testing.T) {
 			msg := &test.SelfRecursive{}
 			err := initProtoFaker(t).FakeProto(msg)
 			require.NoError(t, err)
-			for i := 0; i < defaultMaxDepth; i++ {
+			for i := range defaultMaxDepth {
 				assert.NotNil(t, msg, "message should not be nil at index", i)
 				assert.NotEmpty(t, msg.GetFoo(), "message field should be faked at index", i)
 				msg = msg.GetRecurse()
@@ -444,10 +444,10 @@ func mapInDefault[K comparable, V any](tb testing.TB, m map[K]V) bool {
 	return mapIn(tb, m, defaultMinSize, defaultMaxSize)
 }
 
-func mapIn[K comparable, V any](tb testing.TB, m map[K]V, min, max int) bool {
+func mapIn[K comparable, V any](tb testing.TB, m map[K]V, minimum, maximum int) bool {
 	tb.Helper()
 	n := len(m)
-	return inRange(tb, n, min, max)
+	return inRange(tb, n, minimum, maximum)
 }
 
 func sliceInDefault[T any](tb testing.TB, s []T) bool {
@@ -455,16 +455,16 @@ func sliceInDefault[T any](tb testing.TB, s []T) bool {
 	return sliceIn(tb, s, defaultMinSize, defaultMaxSize)
 }
 
-func sliceIn[T any](tb testing.TB, s []T, min, max int) bool {
+func sliceIn[T any](tb testing.TB, s []T, minimum, maximum int) bool {
 	tb.Helper()
 	n := len(s)
-	return inRange(tb, n, min, max)
+	return inRange(tb, n, minimum, maximum)
 }
 
-func inRange(tb testing.TB, n, min, max int) bool {
+func inRange(tb testing.TB, n, minimum, maximum int) bool {
 	tb.Helper()
-	return assert.GreaterOrEqual(tb, n, min, "minimum") &&
-		assert.LessOrEqual(tb, n, max, "maximum")
+	return assert.GreaterOrEqual(tb, n, minimum, "minimum") &&
+		assert.LessOrEqual(tb, n, maximum, "maximum")
 }
 
 func initProtoFaker(tb testing.TB, opts ...Option) ProtoFaker {
