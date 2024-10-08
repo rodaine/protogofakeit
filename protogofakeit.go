@@ -75,36 +75,36 @@ func WithTemplateOptions(opts *gofakeit.TemplateOptions) Option {
 // WithStringSize sets the default minimum and maximum lengths (inclusive) of
 // random strings produced. Individual lengths can be configured on a per-field
 // basis within the protobuf definition. The default range is 4-10.
-func WithStringSize(min, max int) Option {
+func WithStringSize(minimum, maximum int) Option {
 	return optionFunc(func(pf *protoFaker) {
-		pf.stringSize = size{min: min, max: max}
+		pf.stringSize = size{min: minimum, max: maximum}
 	})
 }
 
 // WithBytesSize sets the default minimum and maximum lengths (inclusive) of
 // random bytes produced. Individual lengths can be configured on a per-field
 // basis within the protobuf definition. The default range is 4-10.
-func WithBytesSize(min, max int) Option {
+func WithBytesSize(minimum, maximum int) Option {
 	return optionFunc(func(pf *protoFaker) {
-		pf.bytesSize = size{min: min, max: max}
+		pf.bytesSize = size{min: minimum, max: maximum}
 	})
 }
 
 // WithListSize sets the default minimum and maximum lengths (inclusive) of
 // random repeated fields produced. Individual lengths can be configured on a
 // per-field basis within the protobuf definition. The default range is 4-10.
-func WithListSize(min, max int) Option {
+func WithListSize(minimum, maximum int) Option {
 	return optionFunc(func(pf *protoFaker) {
-		pf.listSize = size{min: min, max: max}
+		pf.listSize = size{min: minimum, max: maximum}
 	})
 }
 
 // WithMapSize sets the default minimum and maximum lengths (inclusive) of
 // random map fields produced. Individual lengths can be configured on a
 // per-field basis within the protobuf definition. The default range is 4-10.
-func WithMapSize(min, max int) Option {
+func WithMapSize(minimum, maximum int) Option {
 	return optionFunc(func(pf *protoFaker) {
-		pf.mapSize = size{min: min, max: max}
+		pf.mapSize = size{min: minimum, max: maximum}
 	})
 }
 
@@ -264,7 +264,7 @@ func (pf *protoFaker) fakeMap(
 		vGen = gen
 	}
 
-	for i := 0; i < length; i++ {
+	for range length {
 		key := kDesc.Default()
 		if !kGen.GetSkip() {
 			key, err = pf.fakeScalar(kDesc, kGen)
@@ -299,7 +299,7 @@ func (pf *protoFaker) fakeList(
 		gen = elGen
 	}
 
-	for i := 0; i < length; i++ {
+	for range length {
 		val, err := pf.fakeFieldValue(depth, list.NewElement(), desc, gen, true)
 		if err != nil {
 			return err
