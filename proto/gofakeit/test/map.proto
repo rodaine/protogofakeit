@@ -35,7 +35,7 @@ message MapLength {
 
 message MapRange {
   map<string, string> values = 1 [(gofakeit.generate).map.range = {
-    min: 1,
+    min: 1
     max: 2
   }];
 }
