@@ -32,7 +32,7 @@ message RepeatedLength {
 
 message RepeatedRange {
   repeated string scalars = 1 [(gofakeit.generate).repeated.range = {
-    min: 1,
+    min: 1
     max: 2
   }];
 }

@@ -41,8 +41,9 @@ test: $(codegen)
 	$(GO) test $(GO_TEST_FLAGS) ./...
 
 .PHONY: format
-format: $(BUF)
+format: $(BUF) $(GOLANGCI_LINT)
 	$(BUF) format -w
+	$(GOLANGCI_LINT) fmt
 
 .PHONY: lint
 lint: $(codegen) $(GOLANGCI_LINT)
@@ -65,7 +66,7 @@ $(codegen):
 
 $(GOLANGCI_LINT): export GOBIN=$(abspath .bin)
 $(GOLANGCI_LINT):
-	$(GO) install github.com/golangci/golangci-lint/cmd/golangci-lint@$(GOLANGCI_LINT_VERSION) \
+	$(GO) install github.com/golangci/golangci-lint/v2/cmd/golangci-lint@$(GOLANGCI_LINT_VERSION) \
 	&& mv $(GOBIN)/golangci-lint $@
 
 $(BUF): export GOBIN=$(abspath .bin)

@@ -322,8 +322,8 @@ func TestProtoFaker(t *testing.T) {
 			require.NoError(t, err)
 			mapIn(t, msg.GetValues(), 1, 1) // key should always be ""
 			for k, v := range msg.GetValues() {
-				assert.Equal(t, "", k)
-				assert.Equal(t, "", v)
+				assert.Empty(t, k)
+				assert.Empty(t, v)
 			}
 			assert.Nil(t, msg.GetSkipped())
 		})

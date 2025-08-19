@@ -1,43 +1,57 @@
-run:
-  timeout: 5m
-output:
-  sort-results: true
+version: "2"
 linters:
-  enable-all: true
+  default: all
   disable:
-    - execinquery # deprecated: archived by owner
-    - exhaustruct # zero values of fields should be respected
-    - exportloopref # deprecated: no longer relevant as of Go1.22
-    - funlen # redundant with cyclop
-    - gocognit # redundant with cyclop
-    - gofumpt # prefer standard gofmt
-    - goimports # rely on gci instead
-    - gomnd # deprecated: renamed to mnd
-    - ireturn # useful for
-    - maintidx # redundant with cyclop
-    - nlreturn # stylistic choice
-    - nonamedreturns # yes, named returns
-    - testpackage # not necessary
-    - wsl # stylistic choice
-    - wrapcheck # don't always need to wrap errors
-linters-settings:
-  depguard:
+    - exhaustruct
+    - funlen
+    - gocognit
+    - ireturn
+    - maintidx
+    - mnd
+    - nlreturn
+    - noinlineerr
+    - nonamedreturns
+    - testpackage
+    - wrapcheck
+    - wsl
+    - wsl_v5
+  settings:
+    depguard:
+      rules:
+        main:
+          files:
+            - $all
+          deny:
+            - pkg: log
+              desc: use log/slog exclusively
+  exclusions:
+    generated: lax
+    presets:
+      - comments
+      - common-false-positives
+      - legacy
+      - std-error-handling
     rules:
-      main:
-        files: [$all]
-        deny:
-          - pkg: log
-            desc: use log/slog exclusively
-issues:
-  exclude-rules:
-    # Don't ban use of fmt.Errorf to create new errors, but the remaining
-    # checks from err113 are useful.
-    - linters: [err113]
-      text: "do not define dynamic errors, use wrapped static errors instead"
-    # loosen restrictions on test code
-    - path: '_test.go$'
-      linters:
-        - cyclop
-        - dupl
-        - varnamelen
-        - funlen
+      - linters:
+          - err113
+        text: do not define dynamic errors, use wrapped static errors instead
+      - linters:
+          - cyclop
+          - dupl
+          - funlen
+          - varnamelen
+        path: _test.go$
+    paths:
+      - third_party$
+      - builtin$
+      - examples$
+formatters:
+  enable:
+    - gci
+    - gofmt
+  exclusions:
+    generated: lax
+    paths:
+      - third_party$
+      - builtin$
+      - examples$
