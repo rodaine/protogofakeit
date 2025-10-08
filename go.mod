@@ -5,7 +5,7 @@ go 1.23
 require (
 	github.com/brianvoe/gofakeit/v6 v6.28.0
 	github.com/stretchr/testify v1.11.1
-	google.golang.org/protobuf v1.36.9
+	google.golang.org/protobuf v1.36.10
 )
 
 require (
