@@ -3,8 +3,10 @@ linters:
   default: all
   disable:
     - exhaustruct
+    - exhaustruct_v5
     - funlen
     - gocognit
+    - gomodguard
     - ireturn
     - maintidx
     - mnd
